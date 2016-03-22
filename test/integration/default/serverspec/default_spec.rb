@@ -1,9 +1,9 @@
-require 'spec_helper'
+require "spec_helper"
 
-describe 'git-gem-installer::default' do
+describe "git-gem-installer::default" do
   # Serverspec examples can be found at
   # http://serverspec.org/resource_types.html
-  it 'does something' do
-    skip 'Replace this with meaningful tests'
+  it "does something" do
+    skip "Replace this with meaningful tests"
   end
 end

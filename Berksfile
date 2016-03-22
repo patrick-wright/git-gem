@@ -1,11 +1,11 @@
-source 'https://supermarket.chef.io'
+source "https://supermarket.chef.io"
 
 metadata
 
-cookbook 'test', path: './test/fixtures/cookbooks/test'
+cookbook "test", path: "./test/fixtures/cookbooks/test"
 
 group :integration do
-  cookbook 'git', '~> 4.3'
-  cookbook 'apt', '~> 3.0'
-  cookbook 'yum', '~> 3.10'
+  cookbook "git", "~> 4.3"
+  cookbook "apt", "~> 3.0"
+  cookbook "yum", "~> 3.10"
 end
