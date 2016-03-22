@@ -5,17 +5,15 @@ driver:
 provisioner:
   name: chef_zero
 
-# Uncomment the following verifier to leverage Inspec instead of Busser (the
-# default verifier)
-# verifier:
-#   name: inspec
+verifier:
+  name: inspec
 
 platforms:
   - name: ubuntu-14.04
   - name: centos-7.1
 
 suites:
-  - name: default
+  - name: install_chef_acceptance
     run_list:
-      - recipe[test::mixlib_install]
+      - recipe[test::chef_acceptance]
     attributes:
