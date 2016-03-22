@@ -1,3 +1,3 @@
-include_recipe "git_gem"
+include_recipe "git-gem"
 
 git_gem "chef/chef-acceptance"

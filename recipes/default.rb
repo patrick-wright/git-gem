@@ -1,5 +1,5 @@
 #
-# Cookbook Name:: git-gem-installer
+# Cookbook Name:: git-gem
 # Recipe:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
