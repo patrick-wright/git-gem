@@ -31,17 +31,23 @@ action :install do
   checkout_gem.revision(new_resource.git_ref)
   checkout_gem.run_action(:sync)
 
+  ::FileUtils.rm_rf gem_file_path
+
   build_gem = Chef::Resource::Execute.new("build-#{new_resource.gem_name}-gem", run_context)
   build_gem.cwd(gem_clone_path)
   build_gem.command(
     <<-EOH
-rm #{gem_file_path}
 #{::File.join(RbConfig::CONFIG['bindir'], 'gem')} build #{new_resource.gem_name}.gemspec
     EOH
   )
   build_gem.run_action(:run) if checkout_gem.updated?
 
   install_gem = Chef::Resource::ChefGem.new(new_resource.gem_name, run_context)
-  install_gem.source(Dir.glob(gem_file_path).first)
+  install_gem_file_path = if node["platform"] == "windows"
+                            Dir.glob(gem_file_path.tr('\\', '/')).first
+                          else
+                            Dir.glob(gem_file_path).first
+                          end
+  install_gem.source(install_gem_file_path)
   install_gem.run_action(:install) if build_gem.updated?
 end
